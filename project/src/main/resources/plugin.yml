@@ -1,0 +1,3 @@
+version: "2.0"
+name: "deneme"
+main: "me.metumortis.kotlinspigotplugin.Main"
