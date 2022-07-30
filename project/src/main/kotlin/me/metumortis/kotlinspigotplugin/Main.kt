@@ -3,12 +3,17 @@
  */
 package me.metumortis.kotlinspigotplugin
 
-class Main {
-    var greeting: String = ""
-        get() = "Hello World!"
-        set(value) {
-            field = value
-        }
+import org.bukkit.plugin.java.JavaPlugin
 
+class Main : JavaPlugin() {
+    override fun onEnable() {
+        TODO("Plugin startup logic")
+    }
+
+    override fun onDisable() {
+        TODO("Plugin shutdown logic")
+    }
 }
+
+
 
