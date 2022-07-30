@@ -9,9 +9,9 @@ name: Kotlin CI with Gradle
 
 on:
   push:
-    branches: [ "kotlin" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "kotlin" ]
+    branches: [ "master" ]
 
 permissions:
   contents: read
