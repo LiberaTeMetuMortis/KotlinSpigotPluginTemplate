@@ -28,6 +28,8 @@ plugins {
     application
 
 }
+apply(plugin="java")
+apply(plugin="org.jetbrains.kotlin.jvm")
 apply(plugin="com.github.johnrengelman.shadow")
 
 
@@ -70,7 +72,7 @@ java {
 
 
 tasks.withType<Jar> {
-    archiveFileName.set("${project.name}-${project.version}.jar")
+    archiveFileName.set("${pluginName}-${project.version}.jar")
     manifest {
         attributes["Main-Class"] = pluginMainClass
     }
