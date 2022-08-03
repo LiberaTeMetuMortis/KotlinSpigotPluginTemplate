@@ -30,7 +30,9 @@ jobs:
           distribution: 'adopt'
       - name: Build with Gradle
         run: ./gradlew assemble
+      - name: Move Builds
+        run: ./gradlew moveBuilds
       - uses: actions/upload-artifact@v3
         with:
           name: Package
-          path: project/build
+          path: build
