@@ -184,7 +184,7 @@ open class moveBuilds : DefaultTask() {
             val version = it.name.replace("project-", "")
             println(rootDir.absolutePath+"/builds")
             try{
-                File(it.absolutePath+"/build/libs/").listFiles()?.find { x -> x.name.contains("jar") }!!.copyTo(File(rootDir.absolutePath+"/build/$version.jar"))
+                File(it.absolutePath+"/build/libs/").listFiles()?.find { x -> x.name.contains("-all.jar") }!!.copyTo(File(rootDir.absolutePath+"/build/$version.jar"))
             }catch (ignored: Exception){}
         }
     }
