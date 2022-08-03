@@ -28,6 +28,8 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
+      - name: Create Multi Version Plugin
+        run: ./gradlew multiVersionPlugin
       - name: Build with Gradle
         run: ./gradlew assemble
       - name: Move Builds
