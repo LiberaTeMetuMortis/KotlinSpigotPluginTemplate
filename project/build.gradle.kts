@@ -93,7 +93,7 @@ open class MultiVersionPlugin : DefaultTask() {
         option = "versions",
         description = "Configures versions that will built."
     )
-    var versions: String? = null;
+    var versions: String? = null
 
     @TaskAction
     fun create() {
@@ -132,7 +132,7 @@ open class MultiVersionPlugin : DefaultTask() {
                         file.copyRecursively(newFile)
                     }
                     val content = newFile.readText()
-                    var newContent = content
+                    var newContent: String
                     if(version == "1.18"){
                         newContent = content.replace(Regex("(jvmTarget *= *)\"[0-9]+\""), "$1 \"17\"").replace(Regex("JavaVersion.VERSION_[0-9_]+"), "JavaVersion.VERSION_17")
                     }
@@ -178,12 +178,14 @@ open class moveBuilds : DefaultTask() {
     @TaskAction
     fun move(){
         val rootDir = project.rootDir
-        val dir = project.projectDir
+        project.projectDir
         if(!File(rootDir.absolutePath+"/builds").exists()) File(rootDir.absolutePath+"/builds").mkdirs()
         rootDir.listFiles()!!.filter { it.name.matches(Regex("project-[0-9.]+")) }.forEach {
             val version = it.name.replace("project-", "")
             println(rootDir.absolutePath+"/builds")
-            File(it.absolutePath+"/build/libs/").listFiles().find { it.name.contains("jar") }!!.copyTo(File(rootDir.absolutePath+"/build/$version.jar"))
+            try{
+                File(it.absolutePath+"/build/libs/").listFiles()?.find { x -> x.name.contains("jar") }!!.copyTo(File(rootDir.absolutePath+"/build/$version.jar"))
+            }catch (ignored: Exception){}
         }
     }
 }
