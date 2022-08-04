@@ -116,6 +116,7 @@ fun getStringLength(obj: Any): Int? {
     return null
 }
 ```
+[![Kotlin](	https://kotlinlang.org/assets/images/index/banners/kotlin-1.7.0.png)](https://kotlinlang.org/docs/comparison-to-java.html)
 # Why Gradle?
 > I used Gradle because scripting with Gradle using Kotlin is a lot easier than Maven
 > * [Another reason](https://gradle.org/maven-vs-gradle/)
@@ -124,6 +125,5 @@ fun getStringLength(obj: Any): Int? {
 > * [Another reason](https://sendoh-daten.medium.com/how-and-why-do-i-switch-from-maven-to-gradle-b86ffefbae38)
 > * [Another reason](https://www.geeksforgeeks.org/difference-between-gradle-and-maven/)
 
-
-[![Kotlin](	https://kotlinlang.org/assets/images/index/banners/kotlin-1.7.0.png)](https://kotlinlang.org/docs/comparison-to-java.html)
 [![Gradle](https://miro.medium.com/max/1024/1*EOdsCmvfHf37LvjpBAz5rg.png)](https://gradle.org/maven-vs-gradle/)
+
