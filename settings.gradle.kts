@@ -9,14 +9,3 @@
 
 rootProject.name = "KotlinSpigotPlugin"
 include("project")
-include("project-1.18")
-include("project-1.17")
-include("project-1.16")
-include("project-1.15")
-include("project-1.14")
-include("project-1.13")
-include("project-1.12")
-include("project-1.11")
-include("project-1.10")
-include("project-1.9")
-include("project-1.8")
