@@ -17,7 +17,7 @@ open class MultiVersionPlugin : DefaultTask() {
         val rootDir = project.rootDir
         if(versions == null) versions = "all"
         val allVersions = arrayListOf(
-            "1.18", "1.17", "1.16", "1.15", "1.14",
+            "1.19", 1.18", "1.17", "1.16", "1.15", "1.14",
             "1.13", "1.12", "1.11", "1.10", "1.9", "1.8"
         )
         var selectedVersions = versions!!.split(",")
@@ -49,7 +49,7 @@ open class MultiVersionPlugin : DefaultTask() {
                     }
                     val content = newFile.readText()
                     var newContent: String
-                    if(version == "1.18"){
+                    if(version == "1.18" || version == "1.19"){
                         newContent = content.replace(Regex("(jvmTarget *= *)\"[0-9]+\""), "$1 \"17\"").replace(Regex("JavaVersion.VERSION_[0-9_]+"), "JavaVersion.VERSION_17")
                     }
                     else if(version == "1.17"){
