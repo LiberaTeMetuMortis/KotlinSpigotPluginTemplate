@@ -17,7 +17,7 @@ open class MultiVersionPlugin : DefaultTask() {
         val rootDir = project.rootDir
         if(versions == null) versions = "all"
         val allVersions = arrayListOf(
-            "1.19", 1.18", "1.17", "1.16", "1.15", "1.14",
+            "1.19", "1.18", "1.17", "1.16", "1.15", "1.14",
             "1.13", "1.12", "1.11", "1.10", "1.9", "1.8"
         )
         var selectedVersions = versions!!.split(",")
