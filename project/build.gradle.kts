@@ -21,15 +21,13 @@ File("${projectDir.absoluteFile}/src/main/resources/plugin.yml").forEachLine { l
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
     id("com.github.johnrengelman.shadow") version "7.1.2"
-    id("org.jetbrains.kotlin.jvm") version "1.6.21"
+    kotlin("jvm") version "1.7.10"
 
     // Apply the application plugin to add support for building a CLI application in Java.
     application
-
+    java
 }
-apply(plugin="java")
-apply(plugin="org.jetbrains.kotlin.jvm")
-apply(plugin="com.github.johnrengelman.shadow")
+
 apply(from="../script.gradle.kts")
 
 repositories {
