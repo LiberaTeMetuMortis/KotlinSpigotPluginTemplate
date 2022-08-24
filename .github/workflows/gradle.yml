@@ -31,7 +31,7 @@ jobs:
       - name: Create Multi Version Plugin
         run: ./gradlew multiVersionPlugin
       - name: Build with Gradle
-        run: ./gradlew assemble
+        run: ./gradlew shadowJar
       - name: Move Builds
         run: ./gradlew moveBuilds
       - uses: actions/upload-artifact@v3
