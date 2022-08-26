@@ -3,9 +3,9 @@
 ```
 git clone https://github.com/MetuMortis-code/KotlinSpigotPluginTemplate.git
 ```
-> Configure project/src/main/resources/plugin.yml
-> Set version, name, main, api-version and do more if you want.
-> You should run ./gradlew shadowJar to get usable jar.
+> Configure project/src/main/resources/plugin.yml 
+> Set version, name, main, api-version and do more if you want. 
+> You should run ./gradlew shadowJar to get usable jar. 
 
 # Why Kotlin?
 ## Which is in Java but better in Kotlin
