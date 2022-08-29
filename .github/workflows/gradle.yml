@@ -27,7 +27,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '18'
-          distribution: 'coretto'
+          distribution: 'amazon'
       - name: Create Multi Version Plugin
         run: ./gradlew multiVersionPlugin
       - name: Build with Gradle
