@@ -32,7 +32,7 @@ jobs:
         run: ./gradlew multiVersionPlugin
       - name: Set Main Project
       - name: Build with Gradle
-        run: ./gradlew -p project shadowJar
+        run: ./gradlew shadowJar
       - name: Move Builds
         run: ./gradlew moveBuilds
       - uses: actions/upload-artifact@v3
