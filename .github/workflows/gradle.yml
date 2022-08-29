@@ -33,7 +33,7 @@ jobs:
       - name: Create Multi Version Plugin
         run: gradle multiVersionPlugin
       - name: Build with Gradle
-        run: gradle shadowJar
+        run: gradle shadowJar --scan
       - name: Move Builds
         run: gradle -p project moveBuilds
       - uses: actions/upload-artifact@v3
