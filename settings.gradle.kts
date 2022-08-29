@@ -9,3 +9,10 @@
 
 rootProject.name = "KotlinSpigotPlugin"
 include("project")
+gradleEnterprise {
+    buildScan {
+        publishAlways()
+        termsOfServiceUrl = "https://gradle.com/terms-of-service"
+        termsOfServiceAgree = "yes"
+    }
+}
