@@ -29,11 +29,11 @@ jobs:
           java-version: '18'
           distribution: 'corretto'
       - name: Create Multi Version Plugin
-        run: ./gradlew multiVersionPlugin
+        run: gradle multiVersionPlugin
       - name: Build with Gradle
-        run: ./gradlew -p project shadowJar
+        run: gradle -p project shadowJar
       - name: Move Builds
-        run: ./gradlew moveBuilds
+        run: gradle moveBuilds
       - uses: actions/upload-artifact@v3
         with:
           name: Package
