@@ -6,9 +6,6 @@
  * Detailed information about configuring a multi-project build in Gradle can be found
  * in the user manual at https://docs.gradle.org/7.5/userguide/multi_project_builds.html
  */
-
-rootProject.name = "KotlinSpigotPlugin"
-include("project")
 gradleEnterprise {
     buildScan {
         publishAlways()
@@ -16,3 +13,5 @@ gradleEnterprise {
         termsOfServiceAgree = "yes"
     }
 }
+rootProject.name = "KotlinSpigotPlugin"
+include("project")
