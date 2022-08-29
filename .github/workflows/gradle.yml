@@ -30,8 +30,9 @@ jobs:
           distribution: 'corretto'
       - name: Create Multi Version Plugin
         run: ./gradlew multiVersionPlugin
+      - name: Set Main Project
       - name: Build with Gradle
-        run: ./gradlew shadowJar
+        run: ./gradlew -p project shadowJar
       - name: Move Builds
         run: ./gradlew moveBuilds
       - uses: actions/upload-artifact@v3
