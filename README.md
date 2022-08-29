@@ -46,9 +46,9 @@ println("Hello, $name")
 ```
 > [Kotlin has null safety, safe calls, elvis operator.](https://kotlinlang.org/docs/java-interop.html#null-safety-and-platform-types)
 ```kt
-val name: String? = null
-val length = name?.length ?: -1
-println(length ?: "No name")
+val nullableName: String? = null
+val nameLength: Int = name?.length ?: -1
+println(length)
 ```
 > [Kotlin has data classes.](https://kotlinlang.org/docs/data-classes.html)
 ```kt
