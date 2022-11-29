@@ -21,7 +21,7 @@ File("${projectDir.absoluteFile}/src/main/resources/plugin.yml").forEachLine { l
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
     id("com.github.johnrengelman.shadow") version "7.1.2"
-    kotlin("jvm") version "1.7.10"
+    kotlin("jvm") version "1.7.20"
 
     // Apply the application plugin to add support for building a CLI application in Java.
     application
@@ -38,11 +38,8 @@ repositories {
 }
 
 dependencies {
-    // Align versions of all Kotlin components
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
-
-    // Use the Kotlin JDK 8 standard library.
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    // Use the Kotlin standard library.
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.7.20")
 
     // You can add dependencies like this
     compileOnly(group="me.clip", name="placeholderapi", version="2.11.1")
