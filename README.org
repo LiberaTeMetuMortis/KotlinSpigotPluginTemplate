@@ -1,0 +1,12 @@
+* What is this?
+Maybe you are asking about why is there a branch that contains
+- A Nim file
+- A Windows executable
+- A Linux executable
+
+It is for using template automatically.
++ You run the executable
++ Enter your groupd ID
++ Enter your article ID
+
+And it will automatically download the template, create folders according to your selections.
