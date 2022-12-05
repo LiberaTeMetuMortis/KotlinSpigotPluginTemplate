@@ -15,7 +15,7 @@ extractAll("content.zip", "unzipped")
 removeFile("content.zip")
 for file in walkDir("./unzipped"):
   echo file.path
-  if match(file.path, peg"unzipped\/LiberaTeMetuMortis\-KotlinSpigotPluginTemplate\-.+"):
+  if match(file.path, peg"unzipped[\/\\]LiberaTeMetuMortis\-KotlinSpigotPluginTemplate\-.+"):
     echo "Dosya bulundu."
     try:
       moveDir(file.path, artifactID)
