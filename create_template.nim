@@ -44,7 +44,7 @@ writeFile(projectDir&"/"&artifactID&".kt", contentOfMain)
 var pluginConfig: File
 if open(pluginConfig, artifactID&"/project/src/main/resources/plugin.yml", FileMode.fmAppend):
   writeLine(pluginConfig, "name: \""&artifactID&"\"")
-  writeLine(pluginConfig, "main: \""&groupID&artifactID&"\"")
+  writeLine(pluginConfig, "main: \""&groupID&"."&artifactID&"\"")
 var gradleConfig: File
 if open(gradleConfig, artifactID&"/settings.gradle.kts", FileMode.fmAppend):
   writeLine(gradleConfig, "rootProject.name = "&"\""&artifactID&"\"")
