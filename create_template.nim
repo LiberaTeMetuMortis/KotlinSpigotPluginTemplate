@@ -1,5 +1,5 @@
 import std/httpclient
-import zip/zipfiles
+import zippy/ziparchives
 import std/[os,pegs,strutils]
 proc ctrlc() {.noconv.} =
   quit(0)
@@ -10,15 +10,18 @@ stdout.write("Enter your artifact ID: ")
 let artifactID = readLine(stdin)
 let client = newHttpClient()
 let content = client.getContent("https://github.com/LiberaTeMetuMortis/KotlinSpigotPluginTemplate/zipball/raw")
-var zippedContent: ZipArchive
-zippedContent.fromBuffer(content)
-zippedContent.extractAll(".")
-for file in walkDir("."):
-  if match(file.path, peg"\.\/LiberaTeMetuMortis\-KotlinSpigotPluginTemplate\-.+"):
+writeFile("content.zip", content)
+extractAll("content.zip", "unzipped")
+removeFile("content.zip")
+for file in walkDir("./unzipped"):
+  echo file.path
+  if match(file.path, peg"unzipped\/LiberaTeMetuMortis\-KotlinSpigotPluginTemplate\-.+"):
+    echo "Dosya bulundu."
     try:
       moveDir(file.path, artifactID)
     except OSError:
       echo "You already have a directory named ", artifactID
+removeDir("unzipped")
 let replacedGroupID = replace(groupID, '.', '/')
 let projectDir = artifactID&"/project/src/main/kotlin/"&replacedGroupID
 createDir(projectDir)
