@@ -6,7 +6,34 @@ Maybe you are asking about why is there a branch that contains
 
 It is for using template automatically.
 + You run the executable
-+ Enter your groupd ID
++ Enter your group ID
 + Enter your article ID
 
 And it will automatically download the template, create folders according to your selections.
+
+** Why Nim?
+- Nim is a compiled language, which means it is fast.
+- Nim is a statically typed language, which means it is safe.
+- Nim has a very basic syntax, which means it is easy to learn.
+- Nim gives executables for both Windows and Linux, which means it is cross-platform.
+
+** Best Way to Use This
+- Download the executable
+- Put it in your PATH
+- Run it from anywhere
+
+** Build from Source
+- Clone the repository
+- Checkout the auto-create-template branch
+- Install Nim
+- Run `nimble install zippy`
+- Run `nim c -d:release -d:ssl create_template.nim` to build the executable for Linux
+- Run `nim c -d:release -d:ssl -d:mingw create_template.nim` to build the executable for Windows
+
+** What does it do?
+- It downloads the zip of [[https://github.com/LiberaTeMetuMortis/KotlinSpigotPluginTemplate/tree/raw]raw branch] of this project.
+- It extracts the zip to the folder you specified (a folder named as specified artifact ID).
+- It creates your main file according to you group and artifact IDs.
+- It changes name and main at plugin.yml.
+- It changes the root project name at build.gradle.kts.
+If you want more details you can read the code, it is very simple and readable.
