@@ -31,7 +31,7 @@ And it will automatically download the template, create folders according to you
 - Run `nim c -d:release -d:ssl -d:mingw create_template.nim` to build the executable for Windows
 
 ** What does it do?
-- It downloads the zip of [[https://github.com/LiberaTeMetuMortis/KotlinSpigotPluginTemplate/tree/raw][[raw branch]] of this project.
+- It downloads the zip of [[https://github.com/LiberaTeMetuMortis/KotlinSpigotPluginTemplate/tree/raw][raw branch]] of this project.
 - It extracts the zip to the folder you specified (a folder named as specified artifact ID).
 - It creates your main file according to you group and artifact IDs.
 - It changes name and main at plugin.yml.
