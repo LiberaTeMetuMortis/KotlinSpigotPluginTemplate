@@ -8,17 +8,27 @@ setControlCHook(ctrlc)
 var groupID: string
 var artifactID: string
 
-if existsEnv("GROUP_ID"):
-  groupID = getEnv("GROUP_ID")
+if existsEnv("DEFAULT_GROUP_ID"):
+  groupID = getEnv("DEFAULT_GROUP_ID")
 else:
-  stdout.write("Enter your project's group ID: ")
-  groupID = readLine(stdin)
+  if existsEnv("GROUP_ID"):
+    groupID = getEnv("GROUP_ID")
+  else:
+    stdout.write("Enter your project's group ID: ")
+    groupID = readLine(stdin)
+
+
 
 if existsEnv("ARTIFACT_ID"):
   artifactID = getEnv("ARTIFACT_ID")
 else:
   stdout.write("Enter your artifact ID: ")
   artifactID = readLine(stdin)
+
+if existsEnv("DEFAULT_GROUP_ID"):
+  stdout.styledWriteLine(fgGreen, "Using default group ID: "&groupID&"."&toLower(artifactID))
+  groupID = groupID&"."&toLower(artifactID)
+
 
 # Get zip buffer from GitHub.
 let client = newHttpClient()
