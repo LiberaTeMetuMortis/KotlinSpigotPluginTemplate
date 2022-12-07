@@ -4,10 +4,21 @@ import std/[os,pegs,strutils,terminal]
 proc ctrlc() {.noconv.} =
   quit(0)
 setControlCHook(ctrlc)
-stdout.write("Enter your project's group ID: ")
-let groupID = readLine(stdin)
-stdout.write("Enter your artifact ID: ")
-let artifactID = readLine(stdin)
+
+var groupID: string
+var artifactID: string
+
+if existsEnv("GROUP_ID"):
+  groupID = getEnv("GROUP_ID")
+else:
+  stdout.write("Enter your project's group ID: ")
+  groupID = readLine(stdin)
+
+if existsEnv("ARTIFACT_ID"):
+  artifactID = getEnv("ARTIFACT_ID")
+else:
+  stdout.write("Enter your artifact ID: ")
+  artifactID = readLine(stdin)
 
 # Get zip buffer from GitHub.
 let client = newHttpClient()
