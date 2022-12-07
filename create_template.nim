@@ -61,7 +61,7 @@ except:
 
 # Find Template directory.
 for file in walkDir("./unzipped"):
-  if match(file.path, peg"unzipped\/LiberaTeMetuMortis\-KotlinSpigotPluginTemplate\-.+"):
+  if match(file.path, peg"unzipped[\/\\]LiberaTeMetuMortis\-KotlinSpigotPluginTemplate\-.+"):
     # Move Template directory to the main folder.
     try:
       moveDir(file.path, artifactID)
