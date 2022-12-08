@@ -61,12 +61,14 @@ open class MultiVersionPlugin : DefaultTask() {
                     else{
                         newContent = content.replace(Regex("(jvmTarget *= *)\"[0-9]+\""), "$1 \"1.8\"").replace(Regex("JavaVersion.VERSION_[0-9_]+"), "JavaVersion.VERSION_1_8")
                     }
+                    /* 
                     if(version != "1.16") {
                         newContent = newContent.replace(Regex("\"org.spigotmc:spigot-api:.+-R0.1-SNAPSHOT\""), "\"org.spigotmc:spigot-api:$version-R0.1-SNAPSHOT\"")
                     }
                     else {
                         newContent = newContent.replace(Regex("\"org.spigotmc:spigot-api:.+-R0.1-SNAPSHOT\""), "\"org.spigotmc:spigot-api:1.16.4-R0.1-SNAPSHOT\"")
                     }
+                    */
                     newFile.writeText(newContent)
                 }
 
