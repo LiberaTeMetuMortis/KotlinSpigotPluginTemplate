@@ -8,6 +8,7 @@ It is for using template automatically.
 + You run the executable
 + Enter your group ID
 + Enter your artifact ID
++ Enter your Minecraft (api) version
 
 And it will automatically download the template, create folders according to your selections.
 
