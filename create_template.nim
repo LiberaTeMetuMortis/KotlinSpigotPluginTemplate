@@ -7,6 +7,7 @@ setControlCHook(ctrlc)
 
 var groupID: string
 var artifactID: string
+var apiVersion: string
 
 if existsEnv("DEFAULT_GROUP_ID"):
   groupID = getEnv("DEFAULT_GROUP_ID")
@@ -17,8 +18,6 @@ else:
     stdout.write("Enter your project's group ID: ")
     groupID = readLine(stdin)
 
-
-
 if existsEnv("ARTIFACT_ID"):
   artifactID = getEnv("ARTIFACT_ID")
 else:
@@ -28,6 +27,15 @@ else:
 if existsEnv("DEFAULT_GROUP_ID"):
   stdout.styledWriteLine(fgGreen, "Using default group ID: "&groupID&"."&toLower(artifactID))
   groupID = groupID&"."&toLower(artifactID)
+
+if existsEnv("DEFAULT_API_VERSION"):
+  apiVersion = getEnv("DEFAULT_API_VERSION")
+else:
+  if existsEnv("API_VERSION"):
+    apiVersion = getEnv("API_VERSION")
+  else:
+    stdout.write("Enter your project's Minecraft (API) version: ")
+    apiVersion = readLine(stdin)
 
 
 # Get zip buffer from GitHub.
@@ -114,11 +122,12 @@ except:
   stdout.styledWriteLine(fgRed, "Couldn't write into "&projectDir&"/"&artifactID&".kt.")
   quit(1)
 
-# Write artifact and group ID into build.gradle.kts.
+# Write artifact, group IDs and api-version into plugin.yml.
 var pluginConfig: File
 if open(pluginConfig, artifactID&"/project/src/main/resources/plugin.yml", FileMode.fmAppend):
   writeLine(pluginConfig, "name: \""&artifactID&"\"")
   writeLine(pluginConfig, "main: \""&groupID&artifactID&"\"")
+  writeLine(pluginConfig, "api-version: \""&apiVersion&"\"")
   stdout.styledWriteLine(fgGreen, "Wrote artifact and group ID into plugin.yml.")
 else:
   stdout.styledWriteLine(fgRed, "Couldn't open plugin.yml.")
