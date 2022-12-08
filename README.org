@@ -35,6 +35,6 @@ And it will automatically download the template, create folders according to you
 - It downloads the zip of [[https://github.com/LiberaTeMetuMortis/KotlinSpigotPluginTemplate/tree/raw][raw branch]] of this project.
 - It extracts the zip to the folder you specified (a folder named as specified artifact ID).
 - It creates your main file according to you group and artifact IDs.
-- It changes name and main attributes at plugin.yml.
-- It changes the root project name at build.gradle.kts.
+- It changes name, main and api-version attributes at plugin.yml.
+- It changes the root project name at settings.gradle.kts.
 If you want more details you can read the code, it is very simple and readable.
