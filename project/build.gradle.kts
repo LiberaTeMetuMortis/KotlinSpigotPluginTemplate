@@ -8,12 +8,14 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
  */
 var pluginMainClass = ""
 var pluginName = ""
+var pluginAPIVersion = ""
 File("${projectDir.absoluteFile}/src/main/resources/plugin.yml").forEachLine { line ->
     with(line){
         when {
             matches(Regex("^version: .+$")) -> project.version = replace(Regex("version: "), "").replace("\"", "").replace("'", "")
             matches(Regex("^name: .+$")) -> pluginName = replace(Regex("name: "), "").replace("\"", "").replace("'", "")
             matches(Regex("^main: .+$")) -> pluginMainClass = replace(Regex("main: "), "").replace("\"", "").replace("'", "")
+            matches(Regex("^api_version: .+$")) -> pluginAPIVersion = replace(Regex("api_version: "), "").replace("\"", "").replace("'", "")
         }
     }
 }
@@ -45,7 +47,7 @@ dependencies {
     compileOnly(group="me.clip", name="placeholderapi", version="2.11.1")
 
     // Or like this
-    compileOnly("org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot-api:$pluginAPIVersion-R0.1-SNAPSHOT")
 }
 
 application {
