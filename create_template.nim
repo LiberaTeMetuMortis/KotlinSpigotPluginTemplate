@@ -57,6 +57,11 @@ try:
   stdout.styledWriteLine(fgGreen, "Extracted content.zip to unzipped directory.")
 except:
   stdout.styledWriteLine(fgRed, "Failed to extract content.zip to unzipped.")
+  try:
+    removeFile("content.zip")
+    removeDir("unzipped")
+  except:
+    stdout.styledWriteLine(fgRed, "Failed to remove content.zip and unzipped directory.")
   quit(1)
 
 # Remove zip file.
@@ -77,7 +82,10 @@ for file in walkDir("./unzipped"):
   
     except OSError:
       stdout.styledWriteLine(fgRed, "You already have a directory named "&artifactID&".")
-  
+      try:
+        removeDir("unzipped")
+      except:
+        stdout.styledWriteLine(fgRed, "Failed to remove unzipped directory.")
       quit(1)
 
 # Remove unzipped folder.
@@ -95,6 +103,10 @@ try:
   createDir(projectDir)
   stdout.styledWriteLine(fgGreen, "Created project's group directory.")
 except:
+  try:
+    removeDir(artifactID)
+  except:
+    stdout.styledWriteLine(fgRed, "Couldn't remove "&artifactID&" directory.")
   stdout.styledWriteLine(fgRed, "Couldn't create "&projectDir&" directory.")
   quit(1)
 
@@ -119,6 +131,10 @@ try:
   writeFile(projectDir&"/"&artifactID&".kt", contentOfMain)
   stdout.styledWriteLine(fgGreen, "Created main file of the project.")
 except: 
+  try:
+    removeDir(artifactID)
+  except:
+    stdout.styledWriteLine(fgRed, "Couldn't remove "&artifactID&" directory.")
   stdout.styledWriteLine(fgRed, "Couldn't write into "&projectDir&"/"&artifactID&".kt.")
   quit(1)
 
