@@ -15,7 +15,7 @@ File("${projectDir.absoluteFile}/src/main/resources/plugin.yml").forEachLine { l
             matches(Regex("^version: .+$")) -> project.version = replace(Regex("version: "), "").replace("\"", "").replace("'", "")
             matches(Regex("^name: .+$")) -> pluginName = replace(Regex("name: "), "").replace("\"", "").replace("'", "")
             matches(Regex("^main: .+$")) -> pluginMainClass = replace(Regex("main: "), "").replace("\"", "").replace("'", "")
-            matches(Regex("^api_version: .+$")) -> pluginAPIVersion = replace(Regex("api_version: "), "").replace("\"", "").replace("'", "")
+            matches(Regex("^api-version: .+$")) -> pluginAPIVersion = replace(Regex("api-version: "), "").replace("\"", "").replace("'", "")
         }
     }
 }
