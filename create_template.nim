@@ -14,7 +14,7 @@ proc deleteMain() =
   try:
     removeDir(artifactID)
   except:
-    stdout.styledWriteLine(fgRed, "Couldn't remove "&artifactID&" directory.")
+    stdout.styledWriteLine(fgRed, "Failed to remove "&artifactID&" directory.")
 
 if existsEnv("DEFAULT_GROUP_ID"):
   groupID = getEnv("DEFAULT_GROUP_ID")
@@ -109,7 +109,7 @@ try:
   removeDir("unzipped")
   stdout.styledWriteLine(fgGreen, "Removed unzipped folder.")
 except:
-  stdout.styledWriteLine(fgRed, "Couldn't remove unzipped directory.")
+  stdout.styledWriteLine(fgRed, "Failed to remove unzipped directory.")
   quit(1)
 
 # Create project's group directory.
@@ -120,7 +120,7 @@ try:
   stdout.styledWriteLine(fgGreen, "Created project's group directory.")
 except:
   deleteMain()
-  stdout.styledWriteLine(fgRed, "Couldn't create "&projectDir&" directory.")
+  stdout.styledWriteLine(fgRed, "Failed to create "&projectDir&" directory.")
   quit(1)
 
 # Create main file of the project.
@@ -145,7 +145,7 @@ try:
   stdout.styledWriteLine(fgGreen, "Created main file of the project.")
 except: 
   deleteMain()
-  stdout.styledWriteLine(fgRed, "Couldn't write into "&projectDir&"/"&artifactID&".kt.")
+  stdout.styledWriteLine(fgRed, "Failed to write into "&projectDir&"/"&artifactID&".kt.")
   quit(1)
 
 # Write artifact, group IDs and api-version into plugin.yml.
@@ -157,7 +157,7 @@ if open(pluginConfig, artifactID&"/project/src/main/resources/plugin.yml", FileM
   stdout.styledWriteLine(fgGreen, "Wrote artifact and group ID into plugin.yml.")
 else:
   deleteMain()
-  stdout.styledWriteLine(fgRed, "Couldn't open plugin.yml.")
+  stdout.styledWriteLine(fgRed, "Failed to open plugin.yml.")
   quit(1)
 
 # Write artifact ID and root project name into settings.gradle.kts.
@@ -167,7 +167,7 @@ if open(gradleConfig, artifactID&"/settings.gradle.kts", FileMode.fmAppend):
   stdout.styledWriteLine(fgGreen, "Wrote artifact ID and root project name into settings.gradle.kts.")
 else:
   deleteMain()
-  stdout.styledWriteLine(fgRed, "Couldn't open settings.gradle.kts.")
+  stdout.styledWriteLine(fgRed, "Failed to open settings.gradle.kts.")
   quit(1)
 
 # Write java version into build.gradle.kts.
@@ -177,5 +177,5 @@ if open(buildGradleConfig, artifactID&"/project/build.gradle.kts", FileMode.fmAp
   stdout.styledWriteLine(fgGreen, "Wrote java version into build.gradle.kts.")
 else:
   deleteMain()
-  stdout.styledWriteLine(fgRed, "Couldn't open build.gradle.kts.")
+  stdout.styledWriteLine(fgRed, "Failed to open build.gradle.kts.")
   quit(1)
