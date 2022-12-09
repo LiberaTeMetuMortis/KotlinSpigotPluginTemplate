@@ -79,4 +79,3 @@ tasks.withType<ShadowJar>{
     archiveFileName.set("${pluginName}-${project.version}-all.jar")
 }
 
-fun javaVersion() = "17"
