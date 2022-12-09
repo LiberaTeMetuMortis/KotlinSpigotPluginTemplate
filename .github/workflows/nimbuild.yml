@@ -19,7 +19,7 @@ jobs:
         with: 
           nim-version: '1.6.8'
       - name: Install zippy
-        run: nimble install zippy
+        run: echo "y" | nimble install zippy
       - name: Build for Unix
         run: "nim c -d:ssl -d:release create_template.nim" 
       - name: Build for Windows
