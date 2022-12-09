@@ -57,13 +57,13 @@ application {
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = javaVersion()
     }
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.valueOf("VERSION_${javaVersion()}")
+    targetCompatibility = JavaVersion.valueOf("VERSION_${javaVersion()}")
 }
 
 
@@ -79,3 +79,4 @@ tasks.withType<ShadowJar>{
     archiveFileName.set("${pluginName}-${project.version}-all.jar")
 }
 
+fun javaVersion() = "17"
