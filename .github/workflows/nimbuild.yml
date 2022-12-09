@@ -1,0 +1,32 @@
+name: Kotlin CI with Gradle
+
+on:
+  push:
+    branches: [ "auto-create-template" ]
+  pull_request:
+    branches: [ "auto-create-template" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: jiro4989/setup-nim-action@v1
+        with: 
+        nim-version: '1.6.8'
+      - name: Install zippy
+        run: nimble install zippy
+      - name: Build for Unix
+        run: "nim c -d:ssl -d:release create_template.nim" 
+      - name: Build for Windows
+        run: "nim c -d:ssl -d:release -d:mingw create_template.nim" 
+      - name: Move binaries
+        run: "mkdir bin && mv create_template bin && mv create_template.exe bin"
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Package
+          path: bin 
