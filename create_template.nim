@@ -8,6 +8,13 @@ setControlCHook(ctrlc)
 var groupID: string
 var artifactID: string
 var apiVersion: string
+var javaVersion: string
+
+proc deleteMain() =
+  try:
+    removeDir(artifactID)
+  except:
+    stdout.styledWriteLine(fgRed, "Couldn't remove "&artifactID&" directory.")
 
 if existsEnv("DEFAULT_GROUP_ID"):
   groupID = getEnv("DEFAULT_GROUP_ID")
@@ -36,6 +43,15 @@ else:
   else:
     stdout.write("Enter your project's Minecraft (API) version: ")
     apiVersion = readLine(stdin)
+
+if existsEnv("DEFAULT_JAVA_VERSION"):
+  javaVersion = getEnv("DEFAULT_JAVA_VERSION")
+else:
+  if existsEnv("JAVA_VERSION"):
+    javaVersion = getEnv("JAVA_VERSION")
+  else:
+    stdout.write("Enter your project's target Java version: ")
+    javaVersion = readLine(stdin)
 
 
 # Get zip buffer from GitHub.
@@ -103,10 +119,7 @@ try:
   createDir(projectDir)
   stdout.styledWriteLine(fgGreen, "Created project's group directory.")
 except:
-  try:
-    removeDir(artifactID)
-  except:
-    stdout.styledWriteLine(fgRed, "Couldn't remove "&artifactID&" directory.")
+  deleteMain()
   stdout.styledWriteLine(fgRed, "Couldn't create "&projectDir&" directory.")
   quit(1)
 
@@ -131,10 +144,7 @@ try:
   writeFile(projectDir&"/"&artifactID&".kt", contentOfMain)
   stdout.styledWriteLine(fgGreen, "Created main file of the project.")
 except: 
-  try:
-    removeDir(artifactID)
-  except:
-    stdout.styledWriteLine(fgRed, "Couldn't remove "&artifactID&" directory.")
+  deleteMain()
   stdout.styledWriteLine(fgRed, "Couldn't write into "&projectDir&"/"&artifactID&".kt.")
   quit(1)
 
@@ -146,6 +156,7 @@ if open(pluginConfig, artifactID&"/project/src/main/resources/plugin.yml", FileM
   writeLine(pluginConfig, "api-version: \""&apiVersion&"\"")
   stdout.styledWriteLine(fgGreen, "Wrote artifact and group ID into plugin.yml.")
 else:
+  deleteMain()
   stdout.styledWriteLine(fgRed, "Couldn't open plugin.yml.")
   quit(1)
 
@@ -155,5 +166,16 @@ if open(gradleConfig, artifactID&"/settings.gradle.kts", FileMode.fmAppend):
   writeLine(gradleConfig, "rootProject.name = "&"\""&artifactID&"\"")
   stdout.styledWriteLine(fgGreen, "Wrote artifact ID and root project name into settings.gradle.kts.")
 else:
+  deleteMain()
   stdout.styledWriteLine(fgRed, "Couldn't open settings.gradle.kts.")
+  quit(1)
+
+# Write java version into build.gradle.kts.
+var buildGradleConfig: File
+if open(buildGradleConfig, artifactID&"/project/build.gradle.kts", FileMode.fmAppend):
+  writeLine(buildGradleConfig, "fun javaVersion() = \""&javaVersion&"\"")
+  stdout.styledWriteLine(fgGreen, "Wrote java version into build.gradle.kts.")
+else:
+  deleteMain()
+  stdout.styledWriteLine(fgRed, "Couldn't open build.gradle.kts.")
   quit(1)
