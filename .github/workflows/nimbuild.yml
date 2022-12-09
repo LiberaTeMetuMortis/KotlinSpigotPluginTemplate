@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: jiro4989/setup-nim-action@v1
         with: 
-        nim-version: '1.6.8'
+          nim-version: '1.6.8'
       - name: Install zippy
         run: nimble install zippy
       - name: Build for Unix
