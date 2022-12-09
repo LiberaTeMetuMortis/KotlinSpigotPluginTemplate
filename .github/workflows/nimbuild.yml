@@ -21,10 +21,10 @@ jobs:
           nim-version: '1.6.8'
       - name: Install zippy
         run: echo "y" | nimble install zippy
-      - name: Check dir
-        run: ls
       - name: Build for Unix
         run: "nim c -d:ssl -d:release create_template.nim" 
+      - name: Install MinGW
+        run: sudo apt -y install mingw-w64
       - name: Build for Windows
         run: "nim c -d:ssl -d:release -d:mingw create_template.nim" 
       - name: Move binaries
