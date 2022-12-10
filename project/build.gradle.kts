@@ -62,8 +62,8 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 java {
-    sourceCompatibility = JavaVersion.valueOf("VERSION_${javaVersion()}")
-    targetCompatibility = JavaVersion.valueOf("VERSION_${javaVersion()}")
+    sourceCompatibility = JavaVersion.valueOf("VERSION_${javaVersion().replace("8", "1_8")}")
+    targetCompatibility = JavaVersion.valueOf("VERSION_${javaVersion().replace("8", "1_8")}")
 }
 
 

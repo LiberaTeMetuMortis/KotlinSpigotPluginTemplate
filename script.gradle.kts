@@ -50,16 +50,16 @@ open class MultiVersionPlugin : DefaultTask() {
                     val content = newFile.readText()
                     var newContent: String
                     if(version == "1.18" || version == "1.19"){
-                        newContent = content.replace(Regex("(jvmTarget *= *)\"[0-9]+\""), "$1 \"17\"").replace(Regex("JavaVersion.VERSION_[0-9_]+"), "JavaVersion.VERSION_17")
+                        newContent = content.replace(Regex("(fun javaVersion\\(\\) *= *)\"[0-9]+\""), "$1 \"17\"")
                     }
                     else if(version == "1.17"){
-                        newContent = content.replace(Regex("(jvmTarget *= *)\"[0-9]+\""), "$1 \"16\"").replace(Regex("JavaVersion.VERSION_[0-9_]+"), "JavaVersion.VERSION_16")
+                        newContent = content.replace(Regex("(fun javaVersion\\(\\) *= *)\"[0-9]+\""), "$1 \"16\"")
                     }
                     else if(version == "1.16"){
-                        newContent = content.replace(Regex("(jvmTarget *= *)\"[0-9]+\""), "$1 \"11\"").replace(Regex("JavaVersion.VERSION_[0-9_]+"), "JavaVersion.VERSION_11")
+                        newContent = content.replace(Regex("(fun javaVersion\\(\\) *= *)\"[0-9]+\""), "$1 \"11\"")
                     }
                     else{
-                        newContent = content.replace(Regex("(jvmTarget *= *)\"[0-9]+\""), "$1 \"1.8\"").replace(Regex("JavaVersion.VERSION_[0-9_]+"), "JavaVersion.VERSION_1_8")
+                        newContent = content.replace(Regex("(fun javaVersion\\(\\) *= *)\"[0-9]+\""), "$1 \"8\"")
                     }
                     /* 
                     if(version != "1.16") {
