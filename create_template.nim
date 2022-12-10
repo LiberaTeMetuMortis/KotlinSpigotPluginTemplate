@@ -10,7 +10,7 @@ var artifactID: string
 var apiVersion: string
 var javaVersion: string
 
-proc deleteMain() =
+template deleteMain() =
   try:
     removeDir(artifactID)
   except:
