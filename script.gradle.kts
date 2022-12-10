@@ -50,16 +50,16 @@ open class MultiVersionPlugin : DefaultTask() {
                     val content = newFile.readText()
                     var newContent: String
                     if(version == "1.18" || version == "1.19"){
-                        newContent = content.replace(Regex("(fun javaVersion() *= *)\"[0-9]+\"", "$1 \"17\""))
+                        newContent = content.replace(Regex("(fun javaVersion\\(\\) *= *)\"[0-9]+\""), "$1 \"17\"")
                     }
                     else if(version == "1.17"){
-                        newContent = content.replace(Regex("(fun javaVersion() *= *)\"[0-9]+\"", "$1 \"16\""))
+                        newContent = content.replace(Regex("(fun javaVersion\\(\\) *= *)\"[0-9]+\""), "$1 \"16\"")
                     }
                     else if(version == "1.16"){
-                        newContent = .replace(Regex("(fun javaVersion() *= *)\"[0-9]+\"", "$1 \"15\""))
+                        newContent = content.replace(Regex("(fun javaVersion\\(\\) *= *)\"[0-9]+\""), "$1 \"11\"")
                     }
                     else{
-                        newContent = .replace(Regex("(fun javaVersion() *= *)\"[0-9]+\"", "$1 \"8\""))
+                        newContent = content.replace(Regex("(fun javaVersion\\(\\) *= *)\"[0-9]+\""), "$1 \"8\"")
                     }
                     /* 
                     if(version != "1.16") {
