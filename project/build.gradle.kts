@@ -57,7 +57,7 @@ application {
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
-        jvmTarget = javaVersion()
+        jvmTarget = javaVersion().replace("8", "1.8")
     }
 }
 
