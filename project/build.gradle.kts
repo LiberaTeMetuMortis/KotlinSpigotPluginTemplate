@@ -57,13 +57,13 @@ application {
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
-        jvmTarget = javaVersion()
+        jvmTarget = javaVersion().replace("^8$".toRegex(), "1.8")
     }
 }
 
 java {
-    sourceCompatibility = JavaVersion.valueOf("VERSION_${javaVersion().replace("8", "1_8")}")
-    targetCompatibility = JavaVersion.valueOf("VERSION_${javaVersion().replace("8", "1_8")}")
+    sourceCompatibility = JavaVersion.valueOf("VERSION_${javaVersion().replace("^8$".toRegex(), "1_8")}")
+    targetCompatibility = JavaVersion.valueOf("VERSION_${javaVersion().replace("^8$".toRegex(), "1_8")}")
 }
 
 
