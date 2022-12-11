@@ -16,11 +16,11 @@ template deleteMain() =
   except:
     stdout.styledWriteLine(fgRed, "Failed to remove "&artifactID&" directory.")
 
-if existsEnv("DEFAULT_GROUP_ID"):
-  groupID = getEnv("DEFAULT_GROUP_ID")
+if existsEnv("GROUP_ID"):
+  groupID = getEnv("GROUP_ID")
 else:
-  if existsEnv("GROUP_ID"):
-    groupID = getEnv("GROUP_ID")
+  if existsEnv("DEFAULT_GROUP_ID"):
+    groupID = getEnv("DEFAULT_GROUP_ID")
   else:
     stdout.write("Enter your project's group ID: ")
     groupID = readLine(stdin)
@@ -35,20 +35,20 @@ if existsEnv("DEFAULT_GROUP_ID"):
   stdout.styledWriteLine(fgGreen, "Using default group ID: "&groupID&"."&toLower(artifactID))
   groupID = groupID&"."&toLower(artifactID)
 
-if existsEnv("DEFAULT_API_VERSION"):
-  apiVersion = getEnv("DEFAULT_API_VERSION")
+if existsEnv("API_VERSION"):
+  apiVersion = getEnv("API_VERSION")
 else:
-  if existsEnv("API_VERSION"):
-    apiVersion = getEnv("API_VERSION")
+  if existsEnv("DEFAULT_API_VERSION"):
+    apiVersion = getEnv("DEFAULT_API_VERSION")
   else:
     stdout.write("Enter your project's Minecraft (API) version: ")
     apiVersion = readLine(stdin)
 
-if existsEnv("DEFAULT_JAVA_VERSION"):
-  javaVersion = getEnv("DEFAULT_JAVA_VERSION")
+if existsEnv("JAVA_VERSION"):
+  javaVersion = getEnv("JAVA_VERSION")
 else:
-  if existsEnv("JAVA_VERSION"):
-    javaVersion = getEnv("JAVA_VERSION")
+  if existsEnv("DEFAULT_JAVA_VERSION"):
+    javaVersion = getEnv("DEFAULT_JAVA_VERSION")
   else:
     stdout.write("Enter your project's target Java version: ")
     javaVersion = readLine(stdin)
