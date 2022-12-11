@@ -1,6 +1,6 @@
 import std/httpclient
 import zippy/ziparchives
-import std/[os,pegs,strutils,terminal]
+import std/[os,pegs,strutils,terminal,strformat]
 proc ctrlc() {.noconv.} =
   quit(0)
 setControlCHook(ctrlc)
@@ -124,12 +124,12 @@ except:
   quit(1)
 
 # Create main file of the project.
-let contentOfMain = "package "&groupID&"""
+let contentOfMain = """package `groupID`
 
 
 import org.bukkit.plugin.java.JavaPlugin
 
-class """&artifactID&""": JavaPlugin() {
+class `artifactID`: JavaPlugin() {
     override fun onEnable() {
         TODO("Plugin startup logic")
     }
@@ -138,7 +138,7 @@ class """&artifactID&""": JavaPlugin() {
         TODO("Plugin shutdown logic")
     }
 }
-"""
+""".fmt('`', '`')
 
 try: 
   writeFile(projectDir&"/"&artifactID&".kt", contentOfMain)
