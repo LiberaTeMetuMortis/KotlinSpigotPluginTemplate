@@ -32,8 +32,8 @@ else:
   artifactID = readLine(stdin)
 
 if existsEnv("DEFAULT_GROUP_ID"):
-  stdout.styledWriteLine(fgGreen, "Using default group ID: "&groupID&"."&toLower(artifactID))
-  groupID = groupID&"."&toLower(artifactID)
+  stdout.styledWriteLine(fgGreen, fmt"Using default group ID: {groupID}.{toLower(artifactID)}")
+  groupID = fmt"{groupID}.{toLower(artifactID)}"
 
 if existsEnv("API_VERSION"):
   apiVersion = getEnv("API_VERSION")
@@ -97,7 +97,7 @@ for file in walkDir("./unzipped"):
       stdout.styledWriteLine(fgGreen, "Moved Template directory to the main folder.")
   
     except OSError:
-      stdout.styledWriteLine(fgRed, "You already have a directory named "&artifactID&".")
+      stdout.styledWriteLine(fgRed, fmt"You already have a directory named {artifactID}.")
       try:
         removeDir("unzipped")
       except:
@@ -141,7 +141,7 @@ class `artifactID`: JavaPlugin() {
 """.fmt('`', '`')
 
 try: 
-  writeFile(projectDir&"/"&artifactID&".kt", contentOfMain)
+  writeFile(fmt"{projectDir}/{artifactID}.kt", contentOfMain)
   stdout.styledWriteLine(fgGreen, "Created main file of the project.")
 except: 
   deleteMain()
@@ -150,7 +150,7 @@ except:
 
 # Write artifact, group IDs and api-version into plugin.yml.
 var pluginConfig: File
-if open(pluginConfig, artifactID&"/project/src/main/resources/plugin.yml", FileMode.fmAppend):
+if open(pluginConfig, fmt"{artifactID}/project/src/main/resources/plugin.yml", FileMode.fmAppend):
   writeLine(pluginConfig, "name: \""&artifactID&"\"")
   writeLine(pluginConfig, "main: \""&groupID&artifactID&"\"")
   writeLine(pluginConfig, "api-version: \""&apiVersion&"\"")
@@ -163,7 +163,7 @@ else:
 # Write artifact ID and root project name into settings.gradle.kts.
 var gradleConfig: File
 if open(gradleConfig, artifactID&"/settings.gradle.kts", FileMode.fmAppend):
-  writeLine(gradleConfig, "rootProject.name = "&"\""&artifactID&"\"")
+  writeLine(gradleConfig, fmt"""rootProject.name = "{artifactID}" """)
   stdout.styledWriteLine(fgGreen, "Wrote artifact ID and root project name into settings.gradle.kts.")
 else:
   deleteMain()
@@ -173,7 +173,7 @@ else:
 # Write java version into build.gradle.kts.
 var buildGradleConfig: File
 if open(buildGradleConfig, artifactID&"/project/build.gradle.kts", FileMode.fmAppend):
-  writeLine(buildGradleConfig, "fun javaVersion() = \""&javaVersion&"\"")
+  writeLine(buildGradleConfig, fmt"""fun javaVersion() = "{javaVersion}" """)
   stdout.styledWriteLine(fgGreen, "Wrote java version into build.gradle.kts.")
 else:
   deleteMain()
