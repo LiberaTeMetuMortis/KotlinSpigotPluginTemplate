@@ -129,7 +129,7 @@ let contentOfMain = """package `groupID`
 
 import org.bukkit.plugin.java.JavaPlugin
 
-class `artifactID`: JavaPlugin() {
+class `artifactID` : JavaPlugin() {
     override fun onEnable() {
         TODO("Plugin startup logic")
     }
