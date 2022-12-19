@@ -152,7 +152,7 @@ except:
 var pluginConfig: File
 if open(pluginConfig, fmt"{artifactID}/project/src/main/resources/plugin.yml", FileMode.fmAppend):
   writeLine(pluginConfig, "name: \""&artifactID&"\"")
-  writeLine(pluginConfig, "main: \""&groupID&artifactID&"\"")
+  writeLine(pluginConfig, "main: \""&groupID&"."&artifactID&"\"")
   writeLine(pluginConfig, "api-version: \""&apiVersion&"\"")
   stdout.styledWriteLine(fgGreen, "Wrote artifact and group ID into plugin.yml.")
 else:
