@@ -117,7 +117,8 @@ let replacedGroupID = replace(groupID, '.', '/')
 let projectDir = artifactID&"/project/src/main/kotlin/"&replacedGroupID
 try:
   createDir(projectDir)
-  stdout.styledWriteLine(fgGreen, "Created project's group directory.")
+  createDir(artifactID&"/project/dependencies")
+  stdout.styledWriteLine(fgGreen, "Created project's group directory and dependencies folder.")
 except:
   deleteMain()
   stdout.styledWriteLine(fgRed, "Failed to create "&projectDir&" directory.")
