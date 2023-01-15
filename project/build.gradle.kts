@@ -48,6 +48,13 @@ dependencies {
 
     // Or like this
     compileOnly("org.spigotmc:spigot-api:$pluginAPIVersion-R0.1-SNAPSHOT")
+    
+    // Importing all jar files in project/dependencies folder
+    val dependenciesFolder = File("${rootDir.absolutePath}/dependencies")
+    dependenciesFolder.listFiles()?.filter { it.absolutePath.endsWith(".jar") }?.forEach {
+        println("Dependency loaded: ${it.absolutePath}")
+        compileOnly(files(it.absolutePath))
+    }
 }
 
 application {
