@@ -1,7 +1,6 @@
 open class MultiVersionPlugin : DefaultTask() {
-    override fun getGroup(): String {
-        return "application"
-    }
+    override fun getGroup() =  "application"
+    override fun getDescription() = "Creates copies of project for diffrent spigot versions"
 
     @Optional
     @get:Input
@@ -90,9 +89,8 @@ open class MultiVersionPlugin : DefaultTask() {
 tasks.register<MultiVersionPlugin>("multiVersionPlugin")
 
 open class moveBuilds : DefaultTask() {
-    override fun getGroup(): String {
-        return "application"
-    }
+    override fun getGroup() = "application"
+    override fun getDescription() = "Moves all builds from all versions of project to root project's build folder"
     @TaskAction
     fun move(){
         val rootDir = project.rootDir
