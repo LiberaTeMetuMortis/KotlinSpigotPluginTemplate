@@ -23,6 +23,7 @@ File("${projectDir.absoluteFile}/src/main/resources/plugin.yml").forEachLine { l
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
     id("com.github.johnrengelman.shadow") version "7.1.2"
+    // id("io.papermc.paperweight.userdev") version "1.5.3" // Uncomment that line if you want to use Paper NMS API
     kotlin("jvm") version "1.8.0"
 
     // Apply the application plugin to add support for building a CLI application in Java.
@@ -47,7 +48,8 @@ dependencies {
     compileOnly(group="me.clip", name="placeholderapi", version="2.11.1")
 
     // Or like this
-    compileOnly("org.spigotmc:spigot-api:$pluginAPIVersion-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot-api:$pluginAPIVersion-R0.1-SNAPSHOT") // Comment that line if you want to use Spigot API
+    // paperweight.paperDevBundle("$pluginAPIVersion-R0.1-SNAPSHOT") // Uncomment that line if you want to use Paper NMS API
     
     // Importing all jar files in project/dependencies folder
     val dependenciesFolder = File("${projectDir.absolutePath}/dependencies")
