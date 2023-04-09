@@ -19,6 +19,12 @@ File("${projectDir.absoluteFile}/src/main/resources/plugin.yml").forEachLine { l
         }
     }
 }
+if (pluginAPIVersion.isEmpty()) {
+    // Set API version here if you don't want to set it in plugin.yml
+    // pluginAPIVersion = "1.17"
+    pluginAPIVersion = "1.16.4"
+}
+
 
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
