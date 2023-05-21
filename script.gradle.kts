@@ -1,6 +1,6 @@
 open class MultiVersionPlugin : DefaultTask() {
     override fun getGroup() =  "application"
-    override fun getDescription() = "Creates copies of project for diffrent spigot versions"
+    override fun getDescription() = "Creates copies of project for diffrent Spigot versions"
 
     @Optional
     @get:Input
