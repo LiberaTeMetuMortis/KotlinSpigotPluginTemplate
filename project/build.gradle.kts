@@ -25,7 +25,6 @@ if (pluginAPIVersion.isEmpty()) {
     pluginAPIVersion = "1.16.4"
 }
 
-
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
     // id("io.papermc.paperweight.userdev") version "1.5.3" // Uncomment that line if you want to use Paper API which includes NMS
@@ -87,11 +86,17 @@ tasks.withType<Jar> {
     manifest {
         attributes["Main-Class"] = pluginMainClass
     }
-    dependsOn("ktlintFormat")
+    if (project.name == rootProject.name) {
+        dependsOn("ktlintFormat")
+    }
 }
 
 tasks.withType<ShadowJar> {
     archiveFileName.set("$pluginName-${project.version}-all.jar")
+}
+
+tasks.named("multiVersionPlugin") {
+    dependsOn("ktlintFormat")
 }
 
 fun javaVersion() = "17"
