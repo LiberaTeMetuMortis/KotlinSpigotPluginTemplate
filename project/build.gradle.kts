@@ -72,6 +72,7 @@ application {
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
+        useK2 = true
         jvmTarget = javaVersion().replace("^8$".toRegex(), "1.8")
     }
 }
