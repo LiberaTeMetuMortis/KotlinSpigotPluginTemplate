@@ -14,6 +14,3 @@ class Main : JavaPlugin() {
         TODO("Plugin shutdown logic")
     }
 }
-
-
-
