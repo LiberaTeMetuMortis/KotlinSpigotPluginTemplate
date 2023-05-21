@@ -8,3 +8,7 @@
  */
 rootProject.name = "KotlinSpigotPlugin"
 include("project")
+rootDir.listFiles()
+    ?.filter { it.isDirectory && it.name.startsWith("project-") }
+    ?.map(File::getName)
+    ?.forEach(::include)
