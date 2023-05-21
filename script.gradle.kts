@@ -94,7 +94,6 @@ open class moveBuilds : DefaultTask() {
         if(!File(rootDir.absolutePath,"builds").exists()) File(rootDir.absolutePath,"builds").mkdirs()
         rootDir.listFiles()!!.filter { it.name.matches(Regex("project-[0-9.]+")) }.forEach {
             val version = it.name.replace("project-", "")
-            println(rootDir.absolutePath,"builds")
             try{
                 File(it.absolutePath+"${seperator}build${seperator}libs${seperator}").listFiles()?.find { x -> x.name.contains("-all.jar") }!!.copyTo(File(rootDir.absolutePath+"${seperator}build${seperator}$version.jar"))
             }catch (ignored: Exception){}
