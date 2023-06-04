@@ -1,4 +1,4 @@
-name: Kotlin CI with Gradle
+name: Build Nim
 
 on:
   push:
