@@ -5,6 +5,7 @@ proc ctrlc() {.noconv.} =
   quit(0)
 setControlCHook(ctrlc)
 
+let seperator = DirSep
 var groupID: string
 var artifactID: string
 var apiVersion: string
@@ -89,7 +90,7 @@ except:
   quit(1)
 
 # Find Template directory.
-for file in walkDir("./unzipped"):
+for file in walkDir("unzipped"):
   if match(file.path, peg"unzipped[\/\\]LiberaTeMetuMortis\-KotlinSpigotPluginTemplate\-.+"):
     # Move Template directory to the main folder.
     try:
@@ -113,11 +114,11 @@ except:
   quit(1)
 
 # Create project's group directory.
-let replacedGroupID = replace(groupID, '.', '/')
-let projectDir = artifactID&"/project/src/main/kotlin/"&replacedGroupID
+let replacedGroupID = replace(groupID, '.', seperator)
+let projectDir = artifactID&seperator&"project"&seperator&"src"&seperator&"main"&seperator&"kotlin"&seperator&replacedGroupID
 try:
   createDir(projectDir)
-  createDir(artifactID&"/project/dependencies")
+  createDir(artifactID&seperator&"project"&seperator&"dependencies")
   stdout.styledWriteLine(fgGreen, "Created project's group directory and dependencies folder.")
 except:
   deleteMain()
@@ -126,7 +127,6 @@ except:
 
 # Create main file of the project.
 let contentOfMain = """package `groupID`
-
 
 import org.bukkit.plugin.java.JavaPlugin
 
@@ -142,16 +142,16 @@ class `artifactID` : JavaPlugin() {
 """.fmt('`', '`')
 
 try: 
-  writeFile(fmt"{projectDir}/{artifactID}.kt", contentOfMain)
+  writeFile(fmt"{projectDir}{seperator}{artifactID}.kt", contentOfMain)
   stdout.styledWriteLine(fgGreen, "Created main file of the project.")
 except: 
   deleteMain()
-  stdout.styledWriteLine(fgRed, "Failed to write into "&projectDir&"/"&artifactID&".kt.")
+  stdout.styledWriteLine(fgRed, "Failed to write into "&projectDir&seperator&artifactID&".kt.")
   quit(1)
 
 # Write artifact, group IDs and api-version into plugin.yml.
 var pluginConfig: File
-if open(pluginConfig, fmt"{artifactID}/project/src/main/resources/plugin.yml", FileMode.fmAppend):
+if open(pluginConfig, fmt"{artifactID}{seperator}project{seperator}src{seperator}main{seperator}resources{seperator}plugin.yml", FileMode.fmAppend):
   writeLine(pluginConfig, "name: \""&artifactID&"\"")
   writeLine(pluginConfig, "main: \""&groupID&"."&artifactID&"\"")
   writeLine(pluginConfig, "api-version: \""&apiVersion&"\"")
@@ -163,7 +163,7 @@ else:
 
 # Write artifact ID and root project name into settings.gradle.kts.
 var gradleConfig: File
-if open(gradleConfig, artifactID&"/settings.gradle.kts", FileMode.fmAppend):
+if open(gradleConfig, artifactID&seperator&"settings.gradle.kts", FileMode.fmAppend):
   writeLine(gradleConfig, fmt"""rootProject.name = "{artifactID}" """)
   stdout.styledWriteLine(fgGreen, "Wrote artifact ID and root project name into settings.gradle.kts.")
 else:
@@ -173,7 +173,7 @@ else:
 
 # Write java version into build.gradle.kts.
 var buildGradleConfig: File
-if open(buildGradleConfig, artifactID&"/project/build.gradle.kts", FileMode.fmAppend):
+if open(buildGradleConfig, artifactID&seperator&"project"&seperator&"build.gradle.kts", FileMode.fmAppend):
   writeLine(buildGradleConfig, fmt"""fun javaVersion() = "{javaVersion}" """)
   stdout.styledWriteLine(fgGreen, "Wrote java version into build.gradle.kts.")
 else:
