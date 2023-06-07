@@ -7,3 +7,7 @@
  * in the user manual at https://docs.gradle.org/7.5/userguide/multi_project_builds.html
  */
 include("project")
+rootDir.listFiles()
+    ?.filter { it.isDirectory && it.name.startsWith("project-") }
+    ?.map(File::getName)
+    ?.forEach(::include)
