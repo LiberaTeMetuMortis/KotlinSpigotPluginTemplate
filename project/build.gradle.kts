@@ -30,7 +30,7 @@ plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
     // id("io.papermc.paperweight.userdev") version "1.5.3" // Uncomment that line if you want to use Paper API which includes NMS
     id("com.github.johnrengelman.shadow") version "7.1.2"
-    id("org.jlleitschuh.gradle.ktlint") version "11.3.2"
+    id("org.jlleitschuh.gradle.ktlint") version "11.4.0"
     kotlin("jvm") version "1.8.0"
 
     // Apply the application plugin to add support for building a CLI application in Java.
@@ -102,5 +102,5 @@ tasks.named("multiVersionPlugin") {
 }
 
 configure<KtlintExtension> {
-    version.set("0.48.2") // Will update after https://github.com/JLLeitschuh/ktlint-gradle/issues/665 is fixed
+    version.set("0.49.1")
 }
