@@ -11,3 +11,4 @@ rootDir.listFiles()
     ?.filter { it.isDirectory && it.name.startsWith("project-") }
     ?.map(File::getName)
     ?.forEach(::include)
+    
