@@ -10,7 +10,8 @@ import org.jlleitschuh.gradle.ktlint.KtlintExtension
 var pluginMainClass = ""
 var pluginName = ""
 var pluginAPIVersion = ""
-File("${projectDir.absoluteFile}/src/main/resources/plugin.yml").forEachLine { line ->
+val separator: String = File.separator
+File("${projectDir.absoluteFile}${separator}src${separator}main${separator}resources${separator}plugin.yml").forEachLine { line ->
     with(line) {
         when {
             matches(Regex("^version: .+$")) -> project.version = replace(Regex("version: "), "").replace("\"", "").replace("'", "")
@@ -38,7 +39,7 @@ plugins {
     java
 }
 
-apply(from = "../script.gradle.kts")
+apply(from = File(rootDir, "script.gradle.kts"))
 
 repositories {
     // Use Maven Central for resolving dependencies.
@@ -59,7 +60,7 @@ dependencies {
     // paperweight.paperDevBundle("$pluginAPIVersion-R0.1-SNAPSHOT") // Uncomment that line if you want to use Paper API which includes NMS
 
     // Importing all jar files in project/dependencies folder
-    val dependenciesFolder = File("${projectDir.absolutePath}/dependencies")
+    val dependenciesFolder = File(projectDir.absolutePath, "dependencies")
     dependenciesFolder.listFiles()?.filter { it.absolutePath.endsWith(".jar") }?.forEach {
         println("Dependency loaded: ${it.absolutePath}")
         compileOnly(files(it.absolutePath))
