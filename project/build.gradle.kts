@@ -95,7 +95,7 @@ tasks.withType<Jar> {
 }
 
 tasks.withType<ShadowJar> {
-    archiveFileName.set("$pluginName-${project.version}-all.jar")
+    archiveFileName.set("$pluginName-${project.version}-shaded.jar")
 }
 
 tasks.named("multiVersionPlugin") {
